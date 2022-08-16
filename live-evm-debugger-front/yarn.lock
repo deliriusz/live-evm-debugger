@@ -2014,6 +2014,11 @@
   dependencies:
     antlr4ts "^0.5.0-alpha.4"
 
+"@solidjs/router@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@solidjs/router/-/router-0.4.2.tgz#0755a9212e648f1220c081f65aaaa049475ab09f"
+  integrity sha512-RswymVhqnGVHMCo/01X9wE+u98pzYZQ/b23SgjO/PK+8oTgdY1f83OrsWR1A01LieTySkCSw7nunWTi+VOQyWA==
+
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@szmarczak/http-timer/-/http-timer-1.1.2.tgz#b1665e2c461a2cd92f4c1bbf50d5454de0d4b421"
@@ -3803,6 +3808,11 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
+
+bootflat@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/bootflat/-/bootflat-2.0.4.tgz#06f432d501178c328dd400d4cad13729c02a954c"
+  integrity sha512-2lpZ2iTE9U0rstKvEgdcw+2ScmbS0B3dxAJ/5atQ/z5yJO4vyxRh8DIinJoXx1EX40X/AndAw/DCOKzW4Pii3w==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -7125,7 +7135,7 @@ got@^7.1.0:
     url-parse-lax "^1.0.0"
     url-to-options "^1.0.1"
 
-graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9, graceful-fs@^4.2.0, graceful-fs@^4.2.2, graceful-fs@^4.2.4, graceful-fs@^4.2.9:
+graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9, graceful-fs@^4.2.0, graceful-fs@^4.2.10, graceful-fs@^4.2.2, graceful-fs@^4.2.4, graceful-fs@^4.2.9:
   version "4.2.10"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.10.tgz#147d3a006da4ca3ce14728c7aefc287c367d7a6c"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
