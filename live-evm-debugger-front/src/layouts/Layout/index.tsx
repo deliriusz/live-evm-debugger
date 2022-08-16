@@ -4,6 +4,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import Debugger from "../../pages/Debugger";
 import Simulator from "../../pages/Simulator";
+import './style.css'
 
 const Layout = () => {
     return (
@@ -17,8 +18,8 @@ const Layout = () => {
                         <Route path="/simulator" component={Simulator} />
                     </Routes>
                 </div>
-                <Footer />
             </div>
+            <Footer />
         </Router>
     );
 };

@@ -1,3 +1,5 @@
+import './style.css'
+
 const Footer = () => {
 
     return (
@@ -5,7 +7,7 @@ const Footer = () => {
             <div class="footer">
                 <div class="container">
                     <div class="clearfix">
-                        <div class="footer-logo"><a href="#"><img src="public/favicon.ico"/>Live EVM Debugger</a></div>
+                        <div class="footer-logo"><a href="#"><img src="public/favicon.ico" alt="footer logo"/>Live EVM Debugger</a></div>
                         <dl class="footer-nav">
                             <dt class="nav-title">PORTFOLIO</dt>
                             <dd class="nav-item"><a href="#">Web Design</a></dd>

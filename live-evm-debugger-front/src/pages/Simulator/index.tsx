@@ -1,9 +1,9 @@
 const Simulator = () => {
 
     return (
-        <div>
+        <>
             Simulator
-        </div>
+        </>
     )
 }
 
