@@ -1,7 +1,6 @@
 import {supportedChains} from "../../data/supportedChains";
 import {createSignal, For, Show} from "solid-js";
 import {chainProvider} from "../../services/getChainConnectionProvider";
-import {JsonRpcProvider} from "@ethersproject/providers/src.ts/json-rpc-provider";
 import {Chain} from "../../interfaces/chain";
 import {Link} from "@solidjs/router";
 
@@ -28,6 +27,7 @@ const Main = () => {
 
     function searchForTransaction() {
         setIsSearching(true)
+        setTransactionSearchResults([])
         const providers = getApplicableProviders();
 
         Promise.all(
@@ -38,12 +38,10 @@ const Main = () => {
         ).then(transactions => {
             transactions.forEach((t,) => {
                 if(t.tr?.hash?.length > 0) {
-                    const newTranArr = transactionSearchResults()
-                    newTranArr.push({
+                    setTransactionSearchResults([{
                         transactionHash: t.tr.hash,
                         chain: t.chainWithProvider
-                    });
-                    setTransactionSearchResults(newTranArr)
+                    }, ...transactionSearchResults()])
                 }
             })
         }).finally(() => {
@@ -88,16 +86,8 @@ const Main = () => {
                 </Show>
                 <div class="col-md-12">
                     <ul class="nav nav-pills nav-stacked">
-                        {JSON.stringify(transactionSearchResults())}
-                        {(transactionSearchResults()[0]?.chain?.name)}
-                        { transactionSearchResults().map((result, ) => {
-                            console.count()
-                                return <li><Link href={'/debugger/' + result.chain.symbolicName + '/' + result.transactionHash}>result.chain.name</Link></li>
-                            })
-
-                        }
                         <For each={transactionSearchResults()}>{(result, i) =>
-                            <li><Link href={'/debugger/' + result.chain.symbolicName + '/' + result.transactionHash}>result.chain.name</Link></li>
+                            <li><Link href={'/' + result.chain.symbolicName + '/debugger/' + result.transactionHash}>{result.chain.name}</Link></li>
                         }</For>
                     </ul>
                 </div>
