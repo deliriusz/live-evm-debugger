@@ -1,16 +1,69 @@
 import {supportedChains} from "../../data/supportedChains";
-import {createSignal} from "solid-js";
+import {createSignal, For, Show} from "solid-js";
 import {chainProvider} from "../../services/getChainConnectionProvider";
+import {JsonRpcProvider} from "@ethersproject/providers/src.ts/json-rpc-provider";
+import {Chain} from "../../interfaces/chain";
+import {Link} from "@solidjs/router";
 
 const Main = () => {
     const [currentChain, setCurrentChain] = createSignal(supportedChains[0])
     const [provider, setProvider] = createSignal(chainProvider(currentChain()))
-    console.log(provider())
+    const [transactionHash, setTransactionHash] = createSignal('')
+    const [searchInAllChains, setSearchInAllChains] = createSignal(true)
+    const [isSearching, setIsSearching] = createSignal(false)
+    const [transactionSearchResults, setTransactionSearchResults] = createSignal<any[]>([])
+
+
+    function getApplicableProviders(): Chain[] {
+        const chainsWithProviders: Chain[] = []
+
+        for (const chain of searchInAllChains() ? supportedChains : [currentChain()]) {
+            if (!chain.provider) {
+                chain.provider = chainProvider(chain)
+            }
+            chainsWithProviders.push(chain)
+        }
+        return chainsWithProviders
+    }
+
+    function searchForTransaction() {
+        setIsSearching(true)
+        const providers = getApplicableProviders();
+
+        Promise.all(
+            providers.map((chainWithProvider,) => {
+                console.log(chainWithProvider.name)
+                return chainWithProvider.provider!.getTransaction(transactionHash()).then(tr => {return {chainWithProvider, tr}})
+            })
+        ).then(transactions => {
+            transactions.forEach((t,) => {
+                if(t.tr?.hash?.length > 0) {
+                    const newTranArr = transactionSearchResults()
+                    newTranArr.push({
+                        transactionHash: t.tr.hash,
+                        chain: t.chainWithProvider
+                    });
+                    setTransactionSearchResults(newTranArr)
+                }
+            })
+        }).finally(() => {
+            setIsSearching(false)
+            console.log(transactionSearchResults())
+        })
+    }
 
     return (
         <>
             <p> search for transaction hash to debug: </p>
-            <div class="input-group form-search">
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <div class="icheckbox_flat">
+                        <input type="checkbox" id="flat-checkbox-1" onChange={e => setSearchInAllChains(!searchInAllChains())} checked={searchInAllChains()} />
+                    </div>
+                    <label for="flat-checkbox-1">Search in all chains</label>
+                </div>
+            </div>
+            <div class="col-md-8 input-group form-search">
                 <div class="input-group-btn">
                     <button type="button" class="btn btn-info" tabIndex="-1">{currentChain().name}</button>
                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" tabIndex="-1">
@@ -22,12 +75,32 @@ const Main = () => {
                         })}
                     </ul>
                 </div>
-                <input type="text" class="form-control search-query"/>
-                  <span class="input-group-btn">
-                    <button type="submit" class="btn btn-primary" data-type="last">
+                <input type="text" value={transactionHash()} onChange={e => setTransactionHash(e.currentTarget.value)} class="form-control search-query"/>
+                <span class="input-group-btn">
+                    <button type="submit" onClick={e => searchForTransaction()} class="btn btn-primary" data-type="last">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     </button>
                   </span>
+            </div>
+            <div>
+                <Show when={isSearching()}>
+                    <p>Searching...</p>
+                </Show>
+                <div class="col-md-12">
+                    <ul class="nav nav-pills nav-stacked">
+                        {JSON.stringify(transactionSearchResults())}
+                        {(transactionSearchResults()[0]?.chain?.name)}
+                        { transactionSearchResults().map((result, ) => {
+                            console.count()
+                                return <li><Link href={'/debugger/' + result.chain.symbolicName + '/' + result.transactionHash}>result.chain.name</Link></li>
+                            })
+
+                        }
+                        <For each={transactionSearchResults()}>{(result, i) =>
+                            <li><Link href={'/debugger/' + result.chain.symbolicName + '/' + result.transactionHash}>result.chain.name</Link></li>
+                        }</For>
+                    </ul>
+                </div>
             </div>
         </>
     )
