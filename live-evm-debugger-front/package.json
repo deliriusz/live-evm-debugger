@@ -31,7 +31,7 @@
     "env-cmd": "^10.1.0"
   },
   "scripts": {
-    "start": "solid-scripts start",
+    "start": "env-cmd -f .env.local solid-scripts start",
     "build": "solid-scripts build",
     "test": "npx hardhat test"
   },
