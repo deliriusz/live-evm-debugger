@@ -1,5 +1,4 @@
 import {Chain} from '../interfaces/chain'
-import {JsonRpcProvider} from "@ethersproject/providers/src.ts/json-rpc-provider";
 
 // you can check more chains on https://chainlist.org/
 export const supportedChains: Chain[] = [
@@ -7,7 +6,7 @@ export const supportedChains: Chain[] = [
         name: 'ETH Mainnet',
         symbolicName: 'eth',
         chainId: 1,
-        rpcUrl: 'https://rpc.ankr.com/eth',
+        rpcUrl: `https://empty-dry-ensemble.discover.quiknode.pro/${process.env.QUICKNODE_API_KEY}/`,
         blockExplorerUrl: 'https://etherscan.io'
     },
     {

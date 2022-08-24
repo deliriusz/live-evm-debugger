@@ -22,3 +22,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# .env files, only example file is commited
+.env.*
+!.env.example
