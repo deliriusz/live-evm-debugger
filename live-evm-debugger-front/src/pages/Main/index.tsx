@@ -1,6 +1,6 @@
 import {supportedChains} from "../../data/supportedChains";
 import {createSignal, For, Show} from "solid-js";
-import {chainProvider} from "../../services/getChainConnectionProvider";
+import {chainProvider} from "../../services/chainProvider";
 import {Chain} from "../../interfaces/chain";
 import {Link} from "@solidjs/router";
 
@@ -46,17 +46,17 @@ const Main = () => {
             })
         }).finally(() => {
             setIsSearching(false)
-            console.log(transactionSearchResults())
         })
     }
 
     return (
         <>
+            <p>TEST ONLY 0xfa1d6f2643b540a7e148b30cb9400efa47738abf577e5995c46b6fe13a2d4303</p>
             <p> search for transaction hash to debug: </p>
             <div class="col-md-4">
                 <div class="checkbox">
                     <div class="icheckbox_flat">
-                        <input type="checkbox" id="flat-checkbox-1" onChange={e => setSearchInAllChains(!searchInAllChains())} checked={searchInAllChains()} />
+                        <input type="checkbox" id="flat-checkbox-1" onChange={() => setSearchInAllChains(!searchInAllChains())} checked={searchInAllChains()} />
                     </div>
                     <label for="flat-checkbox-1">Search in all chains</label>
                 </div>
@@ -75,7 +75,7 @@ const Main = () => {
                 </div>
                 <input type="text" value={transactionHash()} onChange={e => setTransactionHash(e.currentTarget.value)} class="form-control search-query"/>
                 <span class="input-group-btn">
-                    <button type="submit" onClick={e => searchForTransaction()} class="btn btn-primary" data-type="last">
+                    <button type="submit" onClick={() => searchForTransaction()} class="btn btn-primary" data-type="last">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     </button>
                   </span>
@@ -86,8 +86,8 @@ const Main = () => {
                 </Show>
                 <div class="col-md-12">
                     <ul class="nav nav-pills nav-stacked">
-                        <For each={transactionSearchResults()}>{(result, i) =>
-                            <li><Link href={'/' + result.chain.symbolicName + '/debugger/' + result.transactionHash}>{result.chain.name}</Link></li>
+                        <For each={transactionSearchResults()}>{(result) =>
+                            <li><Link href={'/' + result.chain.symbolicName + '/' + result.transactionHash + '/debugger'}>{result.chain.name}</Link></li>
                         }</For>
                     </ul>
                 </div>
