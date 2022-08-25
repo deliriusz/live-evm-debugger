@@ -27,12 +27,13 @@
     "typechain": "^5.2.0"
   },
   "scripts": {
-    "run": "env-cmd -f .env.local ts-node-esm src/index.ts"
+    "run": "env-cmd -f .env.local yarn nodemon src/index.ts"
   },
   "dependencies": {
-    "typescript": "^4.7.4",
     "express-graphql": "^0.12.0",
     "graphql": "^16.6.0",
+    "nodemon": "^2.0.19",
+    "typescript": "^4.7.4",
     "xpress": "^2.4.6"
   }
 }
