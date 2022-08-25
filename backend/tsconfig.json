@@ -1,22 +1,24 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": false,
-    "noEmit": true,
-  },
-  "files": [
-  ],
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": ["node_modules", "src/**/*.spec.ts"]
+   "compilerOptions": {
+      "target": "esnext",
+      "allowJs": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": false,
+      "noEmit": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+   },
+   "files": [
+   ],
+   "include": [
+      "src/**/*"
+   ],
+   "exclude": ["node_modules", "src/**/*.spec.ts"]
 }
