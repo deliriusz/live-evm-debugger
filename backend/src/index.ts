@@ -1,3 +1,4 @@
+const reflectMetadata = require('reflect-metadata')
 const AppGraphQLSchema = require("./graphql/AppGraphQLSchema")
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');

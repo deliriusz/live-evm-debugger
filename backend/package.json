@@ -27,7 +27,7 @@
     "typechain": "^5.2.0"
   },
   "scripts": {
-    "run": "env-cmd -f .env.local yarn nodemon src/index.ts"
+    "server": "env-cmd -f .env.local yarn nodemon src/index.ts"
   },
   "dependencies": {
     "express-graphql": "^0.12.0",

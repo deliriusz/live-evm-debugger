@@ -1,5 +1,5 @@
 const debugTraceResolver = (type = '') => {
-   
+
 }
 
 const callTraceResolver = (type: string) => {
