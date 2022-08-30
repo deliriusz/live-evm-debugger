@@ -29,7 +29,7 @@
     "typechain": "^5.2.0"
   },
   "scripts": {
-    "server": "env-cmd -f ./src/config/.env.local yarn ts-node-esm src/index.ts"
+    "server": "env-cmd -f ./src/config/.env.local yarn nodemon src/index.ts"
   },
   "dependencies": {
     "express-graphql": "^0.12.0",

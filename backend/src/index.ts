@@ -1,20 +1,17 @@
-import reflectMetadata from 'reflect-metadata'
-import AppGraphQLSchema from "./services/graphql/AppGraphQLSchema"
-import express from 'express'
-import { graphqlHTTP } from 'express-graphql'
+import 'reflect-metadata'
+import Container from 'typedi'
+import api from './api'
+import constants from './config/constants'
+import setup from './config/setup'
+import { DebugModel } from './types/models'
 
-const app = express();
-const PORT = 4000
+const PORT = +(process.env.PORT ?? 4000)
 
-//https://graphql.org/graphql-js/
-app.use(
-    '/graphql',
-    graphqlHTTP({
-        schema: AppGraphQLSchema,
-        graphiql: true,
-    }),
-);
+setup()
 
-app.listen(PORT);
+const model = Container.get<DebugModel>(constants.ids.debugModel)
+console.log(model.getDebugTrace())
+
+api({port: PORT})
 
 console.log(`Backend server started on port ${PORT}`)
