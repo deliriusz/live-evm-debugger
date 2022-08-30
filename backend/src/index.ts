@@ -1,7 +1,7 @@
-const reflectMetadata = require('reflect-metadata')
-const AppGraphQLSchema = require("./graphql/AppGraphQLSchema")
-const express = require('express');
-const { graphqlHTTP } = require('express-graphql');
+import reflectMetadata from 'reflect-metadata'
+import AppGraphQLSchema from "./services/graphql/AppGraphQLSchema"
+import express from 'express'
+import { graphqlHTTP } from 'express-graphql'
 
 const app = express();
 const PORT = 4000

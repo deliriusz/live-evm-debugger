@@ -1,4 +1,4 @@
-import {CallTrace, DebugTrace, JumpTrace, TraceItem} from "../interfaces/traceItem";
+import {CallTrace, DebugTrace, JumpTrace, TraceItem} from "live-evm-debugger-common/dist/TraceItem";
 import {BigNumber} from "ethers";
 
 /**

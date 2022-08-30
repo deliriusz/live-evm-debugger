@@ -1,4 +1,4 @@
-const {
+import {
     GraphQLSchema,
     GraphQLObjectType,
     GraphQLString,
@@ -6,9 +6,8 @@ const {
     GraphQLInt,
     GraphQLList,
     GraphQLBoolean
-} = require('graphql');
+} from 'graphql';
 
-const exampleTrace = require('../../example-transaction-trace.json')
 
 const debugTraceBaseFields = {
     processCounter: {type: GraphQLInt},
@@ -59,7 +58,7 @@ const jumpTraceType = new GraphQLObjectType({
     }
 })
 
-module.exports = new GraphQLSchema({
+export default new GraphQLSchema({
     query: new GraphQLObjectType({
         name: 'RootQuery',
         fields: {
