@@ -21,7 +21,7 @@ const Debugger = () => {
             console.log(getExternalCalls(transformedTrace.trace))
             console.log(getInternalJumps(transformedTrace.trace))
 
-            // trace calls documentation https://www.quicknode.com/docs/ethereum/debug_traceCall
+            // trace calls documentation https://docs.alchemy.com/reference/debug-tracetransaction
             //TODO: enable when testing is finished
             // const transaction = provider?.send("debug_traceTransaction", [
             //     params.tx,
